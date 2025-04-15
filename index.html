@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="description"
+            content="Software engineer with 4 years of experience in backend development, full-stack web solutions, and infrastructure automation. Proficient in Go, Dart and Rust, with some expirience in Zig (a lower level language like C). With expertise in backend maintenance, API development, and system deployment. With the ability to manage large codebases, build robust tools, and set up comprehensive monitoring systems. Junior efficiency nerd"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap"
+        />
+        <style>
+            :root {
+                color-scheme: light dark;
+
+                --color-background: #ffffff; /* White */
+                --color-muted: #f3f4f5; /* Light Gray 200 */
+                --color-primary: #191e23; /* Dark Gray 900 */
+                --color-secondary: #6c7781; /* Dark Gray 300 */
+                --color-accent: #ffb900; /* Accent Yellow */
+                --color-link: #46b450; /* Accent Green */
+
+                --scale-ratio: 1.25;
+                --scale0: 1rem;
+                --scale1: calc(var(--scale0) * var(--scale-ratio));
+                --scale2: calc(var(--scale1) * var(--scale-ratio));
+                --scale3: calc(var(--scale2) * var(--scale-ratio));
+                --scale4: calc(var(--scale3) * var(--scale-ratio));
+                --scale5: calc(var(--scale4) * var(--scale-ratio));
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --color-background: #191e23; /* Dark Gray 900 */
+                    --color-muted: #23282d; /* Dark Gray 800 */
+                    --color-primary: #fbfbfc; /* Light Gray 100 */
+                    --color-secondary: #ccd0d4; /* Light Gray 700 */
+                }
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            html {
+                font-size: 14px;
+            }
+
+            body {
+                background: var(--color-background);
+                color: var(--color-primary);
+                display: grid;
+                font:
+                    1em/1.5 Lato,
+                    sans-serif;
+                gap: 2em;
+                grid-template-columns:
+                    [full-start]
+                    1fr
+                    [main-start side-start]
+                    minmax(min-content, 12em)
+                    [side-end content-start]
+                    minmax(min-content, 36em)
+                    [main-end content-end]
+                    1fr
+                    [full-end];
+                grid-template-rows: auto [content] 0;
+                margin-bottom: 4em;
+            }
+
+            body::before {
+                content: "";
+                grid-column: full;
+                grid-row: content;
+            }
+
+            ol,
+            ul {
+                padding-left: 1em;
+            }
+
+            :not(.icon-list, .tag-list) > li + li {
+                margin-top: 0.4em;
+            }
+
+            li::marker,
+            .network {
+                color: var(--color-secondary);
+            }
+
+            a {
+                color: var(--color-link);
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+
+            a:focus,
+            a:hover {
+                color: var(--color-accent);
+            }
+
+            h1,
+            h2,
+            h3,
+            h5 {
+                font-weight: normal;
+            }
+
+            h1,
+            h2,
+            h3 {
+                line-height: 1.2;
+            }
+
+            h1 {
+                font-size: var(--scale5);
+            }
+
+            h2 {
+                color: var(--color-secondary);
+                font-size: var(--scale4);
+            }
+
+            h3 {
+                color: var(--color-accent);
+                font-size: var(--scale3);
+                grid-column: side;
+                margin-bottom: 1rem;
+            }
+
+            h4 {
+                font-size: var(--scale2);
+            }
+
+            h5 {
+                font-size: var(--scale1);
+            }
+
+            h6 {
+                font-size: var(--scale0);
+            }
+
+            blockquote {
+                border-left: 0.2em solid var(--color-muted);
+                padding-left: 1em;
+            }
+
+            cite {
+                color: var(--color-secondary);
+                font-style: inherit;
+            }
+
+            cite::before {
+                content: "— ";
+            }
+
+            svg {
+                margin-right: 0.2em;
+                vertical-align: -0.2em;
+            }
+
+            .masthead {
+                background: var(--color-muted);
+                display: inherit;
+                gap: inherit;
+                grid-column: full;
+                grid-template-columns: inherit;
+                padding: 4em 0;
+                text-align: center;
+            }
+
+            .masthead > *,
+            section {
+                grid-column: main;
+            }
+
+            .masthead > img {
+                border-radius: 50%;
+                margin: 0 auto;
+                max-width: 12em;
+            }
+
+            article > * + *,
+            blockquote > * + * {
+                margin-top: 0.6em;
+            }
+
+            .meta {
+                color: var(--color-secondary);
+            }
+
+            .stack {
+                display: grid;
+                gap: 1.5em;
+            }
+
+            .icon-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4em 1em;
+                justify-content: center;
+                list-style: none;
+                padding: 0;
+            }
+
+            .grid-list {
+                display: grid;
+                gap: 1em;
+            }
+
+            .tag-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4em;
+                list-style: none;
+                padding: 0;
+            }
+
+            .tag-list > li {
+                background: var(--color-muted);
+                border-radius: 0.2em;
+                padding: 0.2em 0.6em;
+            }
+
+            .bullet-item:not(:first-child)::before {
+                content: "· ";
+                margin: 0 0.2em;
+            }
+
+            @media print, (min-width: 48em) {
+                h3 {
+                    text-align: right;
+                    margin-bottom: inherit;
+                }
+
+                .masthead {
+                    text-align: inherit;
+                }
+
+                .masthead > *,
+                section {
+                    grid-column: content;
+                }
+
+                .masthead img {
+                    grid-column: side;
+                    grid-row: span 2;
+                    max-width: 100%;
+                }
+
+                section {
+                    display: contents;
+                }
+
+                .icon-list {
+                    flex-direction: column;
+                }
+
+                .grid-list {
+                    grid-template-columns: repeat(
+                        auto-fit,
+                        minmax(calc((100% - 1em) / 2), 1fr)
+                    );
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="masthead">
+            <img src="tg_pfp.jpg" alt="" />
+            <div>
+                <h1>Abelardo Ross Piñero</h1>
+                <h2>Software Engineer</h2>
+            </div>
+            <article>
+                <p>
+                    Software engineer with 4 years of experience in backend
+                    development, full-stack web solutions, and infrastructure
+                    automation. Proficient in Go, Dart and Rust, with some
+                    expirience in Zig (a lower level language like C). With
+                    expertise in backend maintenance, API development, and
+                    system deployment. With the ability to manage large
+                    codebases, build robust tools, and set up comprehensive
+                    monitoring systems. Junior efficiency nerd
+                </p>
+            </article>
+            <ul class="icon-list">
+                <li>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-mail"
+                    >
+                        <path
+                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                        ></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <a href="mailto:abelaross96@gmail.com"
+                        >abelaross96@gmail.com</a
+                    >
+                </li>
+                <li>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-link"
+                    >
+                        <path
+                            d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                        ></path>
+                        <path
+                            d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                        ></path>
+                    </svg>
+                    <a href="http://github.com/ross96d">github.com/ross96d</a>
+                </li>
+                <li>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-github"
+                    >
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                        ></path>
+                    </svg>
+                    <a href="https://github.com/ross96d">ross96d</a>
+                    <span class="network">(github)</span>
+                </li>
+            </ul>
+        </header>
+
+        <section id="work">
+            <h3>Work</h3>
+            <div class="stack">
+                <article>
+                    <header>
+                        <h4>Software Engineer</h4>
+                        <div class="meta">
+                            <div>
+                                <strong
+                                    ><a href="https://groupmpg.com/"
+                                        >MPG Logistic</a
+                                    ></strong
+                                >
+                                <span class="bullet-item"
+                                    >Logistic company</span
+                                >
+                            </div>
+                            <div>
+                                <time datetime="2022-11-01">Nov 2022</time> –
+                                Present
+                            </div>
+                            <div>Havana, Cuba</div>
+                        </div>
+                    </header>
+                    <p>
+                        In charge of the development of an api backend with
+                        openapi integration, custom tooling to facilitate day to
+                        day work, managing service deployment using github
+                        workflows and collection and visualization of logs
+                    </p>
+                    <ul>
+                        <li>
+                            <p>
+                                Configured a centralized logging system using
+                                Grafana with Loki, providing real-time insights
+                                into system performance and troubleshooting
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                In charge of the creation of github workflows to
+                                build and deploy all services that the team
+                                built
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Used my own custom tool streamline deployment
+                                processes on linux and windows systems
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Developed a Text User Interface (TUI)
+                                application using Bubble Tea to facilitate log
+                                and database backup management
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Created a backend for a web application in
+                                Golang with OpenAPI generation via Huma,
+                                featuring JWT-based authentication with refresh
+                                token rotation and a flexible authorization
+                                system contributing to good developer experience
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Maintained and optimized backend system with
+                                over 100,000 lines of Dart code, ensuring
+                                stability and scalability across releases
+                            </p>
+                        </li>
+                    </ul>
+                </article>
+                <article>
+                    <header>
+                        <h4>Junior web developer</h4>
+                        <div class="meta">
+                            <div>
+                                <strong
+                                    ><a href="https://www.intefid.com/"
+                                        >Intefid</a
+                                    ></strong
+                                >
+                                <span class="bullet-item"
+                                    >Data analysis company</span
+                                >
+                            </div>
+                            <div>
+                                <time datetime="2021-10">Oct 2021</time> –
+                                <time datetime="2022-11">Nov 2022</time>
+                            </div>
+                            <div>Ecuador</div>
+                        </div>
+                    </header>
+                    <p>
+                        Basic development of web applications with angular and a
+                        nestjs
+                    </p>
+                    <ul>
+                        <li>
+                            <p>
+                                Created interactive forms and interfaces in
+                                Angular for user-friendly experiences
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Made adjustments to Node.js backends to support
+                                new frontend functionalities
+                            </p>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <section id="education">
+            <h3>Education</h3>
+            <div class="stack">
+                <article>
+                    <header>
+                        <h4>
+                            <a href="https://www.cujae.edu.cu/"
+                                >Technological University of Havana &quot;José
+                                Antonio Echeverría&quot; CUJAE</a
+                            >
+                        </h4>
+                        <div class="meta">
+                            <strong>Software engineer</strong>
+                            <div>
+                                <time datetime="2016-06-01">Jun 2016</time> –
+                                <time datetime="2021-08-01">Aug 2021</time>
+                            </div>
+                        </div>
+                    </header>
+                    <p>Bachelor</p>
+                </article>
+            </div>
+        </section>
+        <section id="projects">
+            <h3>Projects</h3>
+            <div class="stack">
+                <article>
+                    <header>
+                        <h4>
+                            <a href="https://github.com/ross96d/updater"
+                                >github.com/ross96d/updater</a
+                            >
+                        </h4>
+                        <div class="meta">
+                            <div>
+                                <strong>Author</strong>
+                            </div>
+                            <div>
+                                <time datetime="2024-03-25">Mar 2024</time> –
+                                Present
+                            </div>
+                        </div>
+                    </header>
+                    <p>
+                        Simple to use continuous deployment tool for VPS with
+                        systemd (linux) and task scheduler (windows) integration
+                    </p>
+                </article>
+                <article>
+                    <header>
+                        <h4>
+                            <a href="https://github.com/ross96d/zart"
+                                >github.com/ross96d/zart</a
+                            >
+                        </h4>
+                        <div class="meta">
+                            <div>
+                                <strong>Author</strong>
+                            </div>
+                            <div>
+                                <time datetime="2024-11-04">Nov 2024</time> –
+                                Present
+                            </div>
+                        </div>
+                    </header>
+                    <p>Implementation of the adaptive radix tree</p>
+                </article>
+                <article>
+                    <header>
+                        <h4>
+                            <a href="https://github.com/ross96d/rdb"
+                                >github.com/ross96d/rdb</a
+                            >
+                        </h4>
+                        <div class="meta">
+                            <div>
+                                <strong>Author</strong>
+                            </div>
+                            <div>
+                                <time datetime="2024-10-25">Oct 2024</time> –
+                                Present
+                            </div>
+                        </div>
+                    </header>
+                    <p>Embeddable and persistent key-value database</p>
+                </article>
+                <article>
+                    <header>
+                        <h4>waive</h4>
+                        <div class="meta">
+                            <div>
+                                <strong>Author</strong>
+                            </div>
+                            <div>
+                                <time datetime="2025-03">Mar 2025</time> –
+                                Present
+                            </div>
+                        </div>
+                    </header>
+                    <p>Gtk application to managing password</p>
+                </article>
+                <article>
+                    <header>
+                        <h4>
+                            <a href="https://monkeylang.org/"
+                                >Monkeylang clone</a
+                            >
+                        </h4>
+                        <div class="meta">
+                            <div>
+                                <strong>Author</strong>
+                            </div>
+                            <div>
+                                <time datetime="2024-10">Oct 2024</time> –
+                                <time datetime="2024-12">Dec 2024</time>
+                            </div>
+                        </div>
+                    </header>
+                    <p>
+                        A parser in Zig for the monkey language made following
+                        the book Writing An Interpreter In Go
+                    </p>
+                </article>
+            </div>
+        </section>
+        <section id="skills">
+            <h3>Skills</h3>
+            <div class="grid-list">
+                <div>
+                    <h4>Backend developement</h4>
+                    <ul class="tag-list">
+                        <li>Golang</li>
+                        <li>OpenApi</li>
+                        <li>Postgres</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Infra &amp; CICD</h4>
+                    <ul class="tag-list">
+                        <li>Github Actions</li>
+                        <li>Javascript</li>
+                        <li>Linux</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Web Development</h4>
+                    <ul class="tag-list">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Javascript</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="languages">
+            <h3>Languages</h3>
+            <div class="grid-list">
+                <div>
+                    <h4>Spanish</h4>
+                    Native speaker
+                </div>
+                <div>
+                    <h4>English</h4>
+                    Professional Working Proficiency
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
